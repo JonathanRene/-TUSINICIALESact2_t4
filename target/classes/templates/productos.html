@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <title>Actividad 2 - MVC y Thymeleaf</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
-        h1 { color: #333; }
-        .autor { font-weight: bold; color: #0066cc; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
         th { background-color: #0066cc; color: white; }
+        .form-container { border: 1px solid #ccc; padding: 20px; width: 350px; background-color: #f9f9f9; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input { width: 90%; padding: 8px; }
+        button { padding: 10px 15px; background-color: #0066cc; color: white; border: none; cursor: pointer; font-weight: bold; }
+        button:hover { background-color: #004c99; }
     </style>
 </head>
 <body>
-
-    <h1 th:text="${titulo}">Título por defecto</h1>
-    <p>Desarrollado por: <span class="autor" th:text="${autor}">Autor</span></p>
+    <h1>Lista de Productos - MVC</h1>
+    <p>Desarrollado por: <strong>Jonathan René</strong></p>
 
     <h2>Catálogo de Productos (MVC + Thymeleaf)</h2>
+    
+    <!-- 1. Tabla generada con th:each -->
     <table>
         <thead>
             <tr>
@@ -27,14 +32,33 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Iteramos la lista de productos con Thymeleaf -->
-            <tr th:each="prod : ${productos}">
-                <td th:text="${prod.id}">1</td>
-                <td th:text="${prod.nombre}">Producto</td>
-                <td th:text="${prod.categoria}">Categoría</td>
+            <tr th:each="p : ${productos}">
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.nombre}"></td>
+                <td th:text="${p.categoria}"></td>
             </tr>
         </tbody>
     </table>
+
+    <!-- 2. Formulario vinculado con @ModelAttribute -->
+    <div class="form-container">
+        <h3>Agregar Nuevo Producto</h3>
+        <form th:action="@{/guardar}" th:object="${producto}" method="POST">
+            <div class="form-group">
+                <label>ID:</label>
+                <input type="number" th:field="*{id}" required />
+            </div>
+            <div class="form-group">
+                <label>Nombre:</label>
+                <input type="text" th:field="*{nombre}" required />
+            </div>
+            <div class="form-group">
+                <label>Categoría:</label>
+                <input type="text" th:field="*{categoria}" required />
+            </div>
+            <button type="submit">Guardar Producto</button>
+        </form>
+    </div>
 
 </body>
 </html>
