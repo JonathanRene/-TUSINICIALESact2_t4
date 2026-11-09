@@ -1,11 +1,11 @@
 package com.jonathanrene.act1_t4.controller;
 
-import com.jonathanrene.act1_t4.dto.ProductoDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.jonathanrene.act1_t4.dto.ProductoDTO;
 import java.util.Arrays;
 import java.util.List;
 
