@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad 2 - MVC y Thymeleaf</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #f4f4f9; }
+        h1 { color: #333; }
+        .autor { font-weight: bold; color: #0066cc; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #0066cc; color: white; }
+    </style>
+</head>
+<body>
+
+    <h1 th:text="${titulo}">Título por defecto</h1>
+    <p>Desarrollado por: <span class="autor" th:text="${autor}">Autor</span></p>
+
+    <h2>Catálogo de Productos (MVC + Thymeleaf)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre del Producto</th>
+                <th>Categoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Iteramos la lista de productos con Thymeleaf -->
+            <tr th:each="prod : ${productos}">
+                <td th:text="${prod.id}">1</td>
+                <td th:text="${prod.nombre}">Producto</td>
+                <td th:text="${prod.categoria}">Categoría</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
